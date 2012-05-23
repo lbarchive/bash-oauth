@@ -3,10 +3,27 @@ Bash OAuth
 
 A Bash library for OAuth.
 
+Installation
+------------
+
+Bash Oauth uses Makefile for installation, generally you may want to do this if you want to install all script into `$HOME/bin`:
+
+    $ make PREFIX=$HOME install-all
+
+### Available targets
+
+    install-all        -> all scripts
+    install            -> OAuth.sh
+    install-twitter    -> TwitterOAuth.sh    + install target
+    install-tcli       -> tcli.sh            + install-twitter target
+    install-stereomood -> StereomoodOAuth.sh + install target
+    install-basm       -> Basm.sh            + install-stereomood target
+    uninstall          -> uninstall all scripts
+
 Notes and Status
 ----------------
 
-This library was written almost two years ago and has not got any updates since then. It was hosted on Google Code, mixed with other small projects, and now move to GitHub for better maintenance. Currently, this library is not under active development, it will only get updtes after issues or requests are submitted.
+This library was written almost two years ago and has not got any updates since then. It was hosted on Google Code, mixed with other small projects, and now move to GitHub for better maintenance. Currently, this library is not under active development, it will only get updates after issues or requests are submitted.
 
 There were two scripts `GmailOAuth.sh` and `gmcli.sh` were coded in the time, but never got commited due to testing and didn't seem to work. However, they are included in this repo and may not be working.
 
@@ -20,4 +37,5 @@ Related Old Stuff
 License
 -------
 
-MIT License. Please note the COPYING and headers of files are still having BSD License, but I have stated this library is now licensed under the MIT License. I am just too lazy to change it, submit an issue and I will change them.
+    Copyright (c) 2010, 2012 Yu-Jie Lin
+    MIT License
