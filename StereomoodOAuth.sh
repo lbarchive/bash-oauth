@@ -19,6 +19,8 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+STEREOMOODOAUTH_VERSION=0.1
+
 # Stereomood API endpoints
 
 SM_SEARCH='http://www.stereomood.com/api/search'

@@ -19,6 +19,8 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+BASHOAUTH_VERSION=0.1
+
 OAuth_debug () {
 	# Print out all parameters, each in own line
 	[[ "$OAUTH_DEBUG" == "" ]] && return
