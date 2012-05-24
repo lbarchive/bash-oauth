@@ -15,6 +15,9 @@ all:
 	@echo uninstall
 
 install:
+	test -d $(INSTDIR) || mkdir -p $(INSTDIR)
+	test -d $(INSTBIN) || mkdir -p $(INSTBIN)
+
 	install -m 0755 OAuth.sh $(INSTBIN)
 
 install-twitter: install
