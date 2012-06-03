@@ -1,0 +1,8 @@
+CHANGES
+=======
+
+## Version 0.1.2 (2012-06-03T10:21:47Z)
+
+### TwitterOAuth 0.1.1
+
+* Add `TO_statuses_home_timeline` (@syranez/bash-oauth)

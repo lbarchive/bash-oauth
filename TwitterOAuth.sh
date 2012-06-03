@@ -20,7 +20,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-TWITTEROAUTH_VERSION=0.1
+TWITTEROAUTH_VERSION=0.1.1
 
 T_API_VERSION="1"
 
@@ -138,11 +138,13 @@ TO_account_update_profile_image () {
   # $2 image (filename)
   local format="$1"
   [[ "$format" == "" ]] && format="xml"
+
   local auth_header=$(OAuth_authorization_header 'Authorization' 'http://api.twitter.com' '' '' 'POST' "$T_ACCOUNT_UPDATE_PROFILE_IMAGE.$format")
+
   TO_ret=$(curl -s -H "$auth_header" -H "Expect:" -F "image=@$2" "$T_ACCOUNT_UPDATE_PROFILE_IMAGE.$format")
+
   TO_rval=$?
   return $TO_rval
-
   }
 
 # gets the user home_timeline.
@@ -155,8 +157,8 @@ TO_statuses_home_timeline () {
   # $2 screen_name
   # $3 count
   local format="$1"
-  local screen_name="syranez"
-  local count=1
+  local screen_name="$2"
+  local count="$3"
   [[ "$format" == "" ]] && format="xml"
   [[ "$count" == "" ]] && count=1
 
