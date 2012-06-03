@@ -27,6 +27,7 @@ T_API_VERSION="1"
 
 T_ACCOUNT_UPDATE_PROFILE_IMAGE="https://api.twitter.com/$T_API_VERSION/account/update_profile_image"
 T_STATUSES_UPDATE="https://api.twitter.com/$T_API_VERSION/statuses/update"
+T_STATUSES_HOME_TIMELINE="https://api.twitter.com/${T_API_VERSION}/statuses/home_timeline"
 
 T_REQUEST_TOKEN='https://api.twitter.com/oauth/request_token'
 T_ACCESS_TOKEN='https://api.twitter.com/oauth/access_token'
@@ -142,3 +143,32 @@ TO_account_update_profile_image () {
 	return $TO_rval
 
 	}
+
+# gets the user home_timeline.
+#
+# @sets TO_ret API response
+# @returns status
+# @public
+TO_statuses_home_timeline () {
+    # $1 format
+    # $2 screen_name
+    # $3 count
+    local format="$1"
+    local screen_name="syranez"
+    local count=1
+    [[ "$format" == "" ]] && format="xml"
+    [[ "$count" == "" ]] && count=1
+
+    local params=(
+        $(OAuth_param 'screen_name' $screen_name)
+        $(OAuth_param 'count' $count)
+    )
+
+    local auth_header=$(OAuth_authorization_header 'Authorization' 'http://api.twitter.com' '' '' 'GET' "$T_STATUSES_HOME_TIMELINE.$format" ${params[@]})
+
+    convscreen=$(OAuth_PE "$screen_name");
+    TO_ret=$(curl -s --get "${T_STATUSES_HOME_TIMELINE}.${format}" --data "screen_name=${convscreen}&count=${count}" --header "${auth_header}")
+    TO_rval=$?
+
+    return $TO_rval
+}
