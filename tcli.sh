@@ -150,13 +150,13 @@ main () {
 	case $tcli_command in
 	account_update_profile_image)
 		[[ "$tcli_file" == "" ]] && show_account_update_profile 1
-		TO_account_update_profile_image '' "$tcli_file"
+		TO_account_update_profile_image "$tcli_file"
 		echo "$TO_ret"
 		return $TO_rval
 		;;
 	statuses_update)
 		[[ "$tcli_status" == "" ]] && show_statuses_update 1
-		TO_statuses_update '' "$tcli_status" "$tcli_in_reply_to_status_id"
+		TO_statuses_update  "$tcli_status" "$tcli_in_reply_to_status_id"
 		echo "$TO_ret"
 		return $TO_rval
 		;;
@@ -195,7 +195,7 @@ main () {
 		echo " Image uploaded: $image_url"
 		
 		echo "Posting tweet..."
-		TO_statuses_update '' "$tcli_status $image_url" "$tcli_in_reply_to_status_id"
+		TO_statuses_update  "$tcli_status $image_url" "$tcli_in_reply_to_status_id"
 		echo "$TO_ret"
 		return $TO_rval
 		;;

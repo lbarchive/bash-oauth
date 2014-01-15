@@ -22,7 +22,7 @@
 
 TWITTEROAUTH_VERSION=0.1.1
 
-T_API_VERSION="1"
+T_API_VERSION="1.1"
 
 # Twitter API endpoints
 
@@ -109,39 +109,35 @@ TO_access_token_helper () {
 ######
 
 TO_statuses_update () {
-  # $1 format
-  # $2 status
-  # $3 in_reply_to_status_id
+  # $1 status
+  # $2 in_reply_to_status_id
   # The followins are not implemented yet:
-  # $4 lat
-  # $5 long
-  # $6 place_id
-  # $7 display_coordinates
-  local format="$1"
-  [[ "$format" == "" ]] && format="xml"
+  # $3 lat
+  # $4 long
+  # $5 place_id
+  # $6 display_coordinates
+  local format="json"
   
   local params=(
-    $(OAuth_param 'status' "$2")
+    $(OAuth_param 'status' "$1")
     )
-  [[ "$3" != "" ]] && params[${#params[@]}]=$(OAuth_param 'in_reply_to_status_id' "$3") && local in_reply_to_status_id=( '--data-urlencode' "in_reply_to_status_id=$3" )
+  [[ "$2" != "" ]] && params[${#params[@]}]=$(OAuth_param 'in_reply_to_status_id' "$2") && local in_reply_to_status_id=( '--data-urlencode' "in_reply_to_status_id=$2" )
   
   local auth_header=$(OAuth_authorization_header 'Authorization' 'http://api.twitter.com' '' '' 'POST' "$T_STATUSES_UPDATE.$format" ${params[@]})
   
-  TO_ret=$(curl -s -H "$auth_header" --data-urlencode "status=$2" ${in_reply_to_status_id[@]} "$T_STATUSES_UPDATE.$format")
+  TO_ret=$(curl -s -H "$auth_header" --data-urlencode "status=$1" ${in_reply_to_status_id[@]} "$T_STATUSES_UPDATE.$format")
 
   TO_rval=$?
   return $TO_rval
   }
 
 TO_account_update_profile_image () {
-  # $1 format
-  # $2 image (filename)
-  local format="$1"
-  [[ "$format" == "" ]] && format="xml"
-
+  # $1 image (filename)
+  local format="json"
+  
   local auth_header=$(OAuth_authorization_header 'Authorization' 'http://api.twitter.com' '' '' 'POST' "$T_ACCOUNT_UPDATE_PROFILE_IMAGE.$format")
 
-  TO_ret=$(curl -s -H "$auth_header" -H "Expect:" -F "image=@$2" "$T_ACCOUNT_UPDATE_PROFILE_IMAGE.$format")
+  TO_ret=$(curl -s -H "$auth_header" -H "Expect:" -F "image=@$1" "$T_ACCOUNT_UPDATE_PROFILE_IMAGE.$format")
 
   TO_rval=$?
   return $TO_rval
@@ -153,13 +149,11 @@ TO_account_update_profile_image () {
 # @returns status
 # @public
 TO_statuses_home_timeline () {
-  # $1 format
-  # $2 screen_name
-  # $3 count
-  local format="$1"
-  local screen_name="$2"
-  local count="$3"
-  [[ "$format" == "" ]] && format="xml"
+  # $1 screen_name
+  # $2 count
+  local format="json"
+  local screen_name="$1"
+  local count="$2"
   [[ "$count" == "" ]] && count=1
 
   local params=(
