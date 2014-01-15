@@ -22,7 +22,7 @@
 
 TWITTEROAUTH_VERSION=0.1.1
 
-T_API_VERSION="1"
+T_API_VERSION="1.1"
 
 # Twitter API endpoints
 
@@ -117,8 +117,7 @@ TO_statuses_update () {
   # $5 long
   # $6 place_id
   # $7 display_coordinates
-  local format="$1"
-  [[ "$format" == "" ]] && format="xml"
+  local format="json"
   
   local params=(
     $(OAuth_param 'status' "$2")
@@ -136,9 +135,8 @@ TO_statuses_update () {
 TO_account_update_profile_image () {
   # $1 format
   # $2 image (filename)
-  local format="$1"
-  [[ "$format" == "" ]] && format="xml"
-
+  local format="json"
+  
   local auth_header=$(OAuth_authorization_header 'Authorization' 'http://api.twitter.com' '' '' 'POST' "$T_ACCOUNT_UPDATE_PROFILE_IMAGE.$format")
 
   TO_ret=$(curl -s -H "$auth_header" -H "Expect:" -F "image=@$2" "$T_ACCOUNT_UPDATE_PROFILE_IMAGE.$format")
@@ -156,10 +154,9 @@ TO_statuses_home_timeline () {
   # $1 format
   # $2 screen_name
   # $3 count
-  local format="$1"
+  local format="json"
   local screen_name="$2"
   local count="$3"
-  [[ "$format" == "" ]] && format="xml"
   [[ "$count" == "" ]] && count=1
 
   local params=(
