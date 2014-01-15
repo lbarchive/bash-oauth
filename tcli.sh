@@ -126,7 +126,7 @@ main () {
 		s)	tcli_status="$OPTARG";;
 		r)	tcli_in_reply_to_status_id="$OPTARG";;
 		f)	tcli_file="$OPTARG";;
-		h)  tcli_help_flag="1";;
+		h)	Tcli_help_flag="1";;
 		?)	usage
 			exit 2;;
 		esac
@@ -156,7 +156,7 @@ main () {
 		;;
 	statuses_update)
 		[[ "$tcli_status" == "" ]] && show_statuses_update 1
-		TO_statuses_update  "$tcli_status" "$tcli_in_reply_to_status_id"
+		TO_statuses_update "$tcli_status" "$tcli_in_reply_to_status_id"
 		echo "$TO_ret"
 		return $TO_rval
 		;;
@@ -195,7 +195,7 @@ main () {
 		echo " Image uploaded: $image_url"
 		
 		echo "Posting tweet..."
-		TO_statuses_update  "$tcli_status $image_url" "$tcli_in_reply_to_status_id"
+		TO_statuses_update "$tcli_status $image_url" "$tcli_in_reply_to_status_id"
 		echo "$TO_ret"
 		return $TO_rval
 		;;

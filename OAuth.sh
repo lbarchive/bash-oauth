@@ -45,7 +45,7 @@ OAuth_PE () {
 	# Encode $1 using Percent-encoding as defined in
 	# http://tools.ietf.org/html/rfc5849#section-3.6
 	# Any character other than [a-zA-Z0-9-._~] is converted into format %XX
-    [ -n "$1" ] \
+	[ -n "$1" ] \
 	&& echo -n "$1" | perl -p -e 's/([^A-Za-z0-9-._~])/sprintf("%%%02X", ord($1))/seg'
 }
 
@@ -53,7 +53,7 @@ OAuth_PE_file () {
 	# Encode a file $1 using Percent-encoding as defined in
 	# http://tools.ietf.org/html/rfc5849#section-3.6
 	# $1 a filename, not the content of file
-    perl -p -e 's/([^A-Za-z0-9-._~])/sprintf("%%%02X", ord($1))/seg' < "$1"
+	perl -p -e 's/([^A-Za-z0-9-._~])/sprintf("%%%02X", ord($1))/seg' < "$1"
 }
 
 OAuth_params_string () {
@@ -107,9 +107,9 @@ OAuth_param_raw_value () {
 
 OAuth_HMAC_SHA1 () {
 	# Hash the text $1 with key $2
-    local text="$1"
+	local text="$1"
 	local key="$2"
-    echo -n "$text" | openssl dgst -sha1 -binary -hmac "$key" | base64
+	echo -n "$text" | openssl dgst -sha1 -binary -hmac "$key" | base64
 	}
 
 _OAuth_signature () {
