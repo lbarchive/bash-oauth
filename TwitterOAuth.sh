@@ -1,4 +1,5 @@
 #!/bin/bash
+# Copyright (c) 2014 Mathew Paret
 # Copyright (c) 2012 Michael Nowack
 # Copyright (c) 2010, 2012 Yu-Jie Lin
 # 
@@ -20,7 +21,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-TWITTEROAUTH_VERSION=0.1.1
+TWITTEROAUTH_VERSION=0.2.0
 
 T_API_VERSION="1.1"
 

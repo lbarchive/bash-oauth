@@ -1,4 +1,5 @@
 #!/bin/bash
+# Copyright (c) 2014 Mathew Paret
 # Copyright (c) 2010, 2012 Yu-Jie Lin
 # 
 # Permission is hereby granted, free of charge, to any person obtaining a copy of

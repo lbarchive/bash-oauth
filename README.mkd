@@ -37,5 +37,8 @@ Related Old Stuff
 License
 -------
 
+Bash OAuth is licensed under the MIT License.
+
+    Copyright (c) 2014 Mathew Paret
+    Copyright (c) 2012 Michael Nowack
     Copyright (c) 2010, 2012 Yu-Jie Lin
-    MIT License
